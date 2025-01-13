@@ -24,7 +24,7 @@ The primary objective of this project is to fine-tune a large language model (GP
 
 ---
 
-### **4. Steps We Followed**
+## Steps Followed
 1. **Set Up CUDA**:
    - Configured the environment for GPU acceleration on Google Colab and optimized GPU settings using CUDA.
 
@@ -42,7 +42,19 @@ The primary objective of this project is to fine-tune a large language model (GP
 
 ---
 
-### **5. Transformer Layers**
+## Bottleneck Issue
+- **Identified Bottlenecks**:
+   - Multi-Head Attention's matrix multiplications and Softmax's exponential computations were slowing down the process.
+- **Resolution**:
+   - Offloaded these computations to CUDA, significantly reducing runtime and improving throughput.
+
+---
+
+## Transformer Layers We Optimized
+- Multi-Head Attention and Softmax are the most computationally intensive layers in a transformer.
+- Optimizing these layers reduces overall latency and enhances efficiency without overcomplicating the pipeline.
+- Optimizing all layers may introduce instability and require significant computational resources.
+  
 - **Multi-Head Attention**:
    - Critical for capturing dependencies between tokens across the input sequence.
    - Computationally expensive due to matrix multiplications.
@@ -53,46 +65,21 @@ The primary objective of this project is to fine-tune a large language model (GP
 
 ---
 
-### **6. Why We Only Optimized Few Layers**
-- **Focus on Bottlenecks**:
-   - Multi-Head Attention and Softmax are the most computationally intensive layers in a transformer.
-   - Optimizing these layers reduces overall latency and enhances efficiency without overcomplicating the pipeline.
-
-- **Maintain Model Integrity**:
-   - Optimizing all layers may introduce instability and require significant computational resources.
-
----
-
-### **7. Bottleneck Issue**
-- **Identified Bottlenecks**:
-   - Multi-Head Attention's matrix multiplications and Softmax's exponential computations were slowing down the process.
-- **Resolution**:
-   - Offloaded these computations to CUDA, significantly reducing runtime and improving throughput.
-
----
-
-### **8. RL Algorithm Used**
+## RL Algorithm Used
 - **Proximal Policy Optimization (PPO)**:
+   - Proximal Policy Optimization (PPO) is a policy gradient method in RL.
    - A robust and widely-used RL algorithm.
    - Balances exploration and exploitation by restricting large policy updates to ensure stable training.
    - Ideal for fine-tuning tasks where gradual improvements are critical.
-
----
-
-### **9. What Is PPO?**
-- **Definition**:
-   - Proximal Policy Optimization (PPO) is a policy gradient method in RL.
-   - It uses a clipped objective function to limit updates to the policy, ensuring stability and preventing overfitting.
-
-- **Relevance in This Project**:
    - PPO enables the model to learn from feedback (rewards) without destabilizing pre-trained weights.
    - It ensures that text generation improves over time while maintaining coherence and fluency.
 
 ---
 
-### **Conclusion**
+
+## Conclusion
 This project successfully demonstrates the integration of CUDA-based optimization and Reinforcement Learning to fine-tune GPT-2 for text generation tasks. By focusing on critical layers and leveraging PPO, we achieved efficient and stable training with measurable improvements in the model's outputs. The approach can be extended to other NLP tasks and larger transformer models. 
 
 ---
 
-Let me know if you'd like to expand on any section or adjust the tone further!
+
